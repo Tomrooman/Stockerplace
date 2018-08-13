@@ -1,0 +1,83 @@
+.file-event-download a {
+    color : black !important;
+}
+
+.file-event-download a:hover {
+    color : black !important;
+    text-decoration: none;
+}
+
+.files-container {
+    margin-top : 4rem;
+    margin-left : auto;
+    margin-right : auto;
+}
+
+.file-name {
+    overflow-wrap: break-word;
+}
+
+.file-line-start, .file-line, .file-line-end {
+    padding-top : 0.5rem;
+    padding-bottom : 0.5rem;
+    position : relative;
+}
+
+.file-line-start {
+    border-top : 1px solid grey;
+    border-bottom : 1px solid grey;
+}
+
+.file-line {
+    border-bottom : 1px solid grey;
+}
+
+.file-line-start:hover, .file-line:hover, .file-line-end:hover {
+    transition-duration: 0.7s;
+    background-color : rgba(124, 206, 245, 0.158);
+}
+
+.file-line-end {
+    border-bottom : 1px solid grey;
+}
+
+.file-event-rename, .file-event-remove, .file-event-download {
+    cursor : pointer;
+    margin-right : 15px;
+}
+
+.file-event {
+    float : right;
+}
+
+.dropzone h3 {
+    margin-top : 2rem;
+    color : grey;
+    text-align : center;
+}
+
+.dropzone div {
+    padding-top : 10%;
+    margin-top : 3rem;
+    margin-bottom : 3rem;
+    height : 80% !important;
+    width : 80% !important;
+    margin-right : auto;
+    margin-left : auto;
+}
+
+.tooltip-rename {
+    background-color : rgb(117, 177, 177) !important;
+}
+
+.tooltip-rename:after {
+    border-top-color : rgb(117, 177, 177) !important;
+}
+
+.tooltip-remove {
+    background-color : rgb(194, 87, 87) !important;
+}
+
+.tooltip-remove:after {
+    border-top-color : rgb(194, 87, 87) !important;
+}
