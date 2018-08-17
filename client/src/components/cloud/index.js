@@ -33,12 +33,12 @@ class Cloud extends Component {
     this.rename = this.rename.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
-    this.handleDownload = this.handleDownload.bind(this);
+    this.fileSelected = this.fileSelected.bind(this);
   }
 
   componentWillMount() {
     if (this.props.user && this.props.user.id) {
-      axios.get(`/cloud/${this.props.user.id}`)
+      axios.post(`/cloud/${this.props.user.id}`)
         .then(response => {
           this.setState({ files: response.data })
         })
@@ -67,10 +67,6 @@ class Cloud extends Component {
 
   onChange(e) {
     this.setState({ file: e.target.files[0] })
-  }
-
-  handleDownload(file) {
-    console.log('handle download file', file);
   }
 
   handleRename(file) {
@@ -105,6 +101,67 @@ class Cloud extends Component {
     });
   }
 
+  fileSelected(e) {
+    let divClass = e.target.getAttribute('class');
+    let selectedDiv;
+    divClass = divClass.split(' ');
+    if (divClass[1] !== 'file-line' && divClass[1] !== 'file-line-start' && divClass[1] !== 'file-line-end') {
+      let toSelect = e.target.parentElement.parentElement.getAttribute('class').split(' ');
+      if (toSelect[0] === "files-container") {
+        selectedDiv = e.target.parentElement;
+      }
+      else {
+        selectedDiv = e.target.parentElement.parentElement;
+      }
+    }
+    else {
+      selectedDiv = e.target;
+    }
+    divClass = selectedDiv.getAttribute('class').split(' ')[selectedDiv.getAttribute('class').split(' ').length - 1];
+    if (divClass === "file-line-selected" || divClass === "file-line-start-selected" || divClass === "file-line-end-selected" || divClass === "row") {
+      this.unselect(e);
+    }
+    else {
+      if (divClass === "file-line-start") {
+        selectedDiv.setAttribute('class', 'row file-line-start-selected')
+      }
+      else if (divClass === "file-line") {
+        selectedDiv.setAttribute('class', 'row file-line-selected')
+      }
+      else {
+        selectedDiv.setAttribute('class', 'row file-line-end-selected')
+      }
+    }
+  }
+
+  unselect(e) {
+    let divClass = e.target.getAttribute('class');
+    let selectedDiv;
+    divClass = divClass.split(' ');
+    if (divClass[1] !== 'file-line-selected' && divClass[1] !== 'file-line-start-selected' && divClass[1] !== 'file-line-end-selected') {
+      let toSelect = e.target.parentElement.parentElement.getAttribute('class').split(' ');
+      if (toSelect[0] === "files-container") {
+        selectedDiv = e.target.parentElement;
+      }
+      else {
+        selectedDiv = e.target.parentElement.parentElement;
+      }
+    }
+    else {
+      selectedDiv = e.target;
+    }
+    divClass = selectedDiv.getAttribute('class').split(' ')[selectedDiv.getAttribute('class').split(' ').length - 1];
+    if (divClass === "file-line-start-selected") {
+      selectedDiv.setAttribute('class', 'row file-line-start')
+    }
+    else if (divClass === "file-line-selected") {
+      selectedDiv.setAttribute('class', 'row file-line')
+    }
+    else {
+      selectedDiv.setAttribute('class', 'row file-line-end')
+    }
+  }
+
   remove() {
     axios.post(`/cloud/remove/${this.state.file._id}`)
       .then(response => {
@@ -135,40 +192,45 @@ class Cloud extends Component {
             <h1>Mes fichiers</h1>
           </div>
           {this.state.files && this.state.files.length ?
-            <div className="files-container col-sm-8 col-md-7 col-lg-6 col-xl-5">
-              {this.state.files.map((file, index) => {
-                return (
-                  <div className={index === this.state.files.length - 1 ? "row file-line-end" : index === 0 ? "row file-line-start" : "row file-line"} key={file._id}>
-                    <div className="col-9 text-left file-name">
-                      {file.showName}
-                    </div>
-                    <div className="col-3">
-                      <div className="row file-event">
-                        <div data-tip data-for='download' className='file-event-download'>
-                          <a href={"/" + file.path} download={file.showName}><FontAwesomeIcon icon="download" /></a>
-                        </div>
-                        <ReactTooltip id='download' effect='solid' className="tooltip-download">
-                          <span>Télécharger</span>
-                        </ReactTooltip>
-                        <div data-tip data-for='edit' onClick={() => { this.handleRename(file) }} className="file-event-rename">
-                          <FontAwesomeIcon icon="edit" />
-                        </div>
-                        <ReactTooltip id='edit' effect='solid' className="tooltip-rename">
-                          <span>Renommer</span>
-                        </ReactTooltip>
-                        <div data-tip data-for='remove' className="file-event-remove" onClick={() => { this.handleRemove(file) }}>
-                          <FontAwesomeIcon icon="times" />
-                        </div>
-                        <ReactTooltip id='remove' effect='solid' className="tooltip-remove">
-                          <span>Supprimer</span>
-                        </ReactTooltip>
+            <div className="row">
+              <div className="files-container col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xl-5">
+                {this.state.files.map((file, index) => {
+                  return (
+                    <div onClick={this.fileSelected} className={index === this.state.files.length - 1 ? "row file-line-end" : index === 0 ? "row file-line-start" : "row file-line"} key={file._id}>
+                      <div className="col-9 text-left file-name">
+                        {file.showName}
+                      </div>
+                      <div className="col-3">
+                        <div className="row file-event">
+                          <div data-tip data-for='download' className='file-event-download'>
+                            <a href={"/" + file.path} download={file.showName}><FontAwesomeIcon icon="download" /></a>
+                          </div>
+                          <ReactTooltip id='download' effect='solid' className="tooltip-download">
+                            <span>Télécharger</span>
+                          </ReactTooltip>
+                          <div data-tip data-for='edit' onClick={() => { this.handleRename(file) }} className="file-event-rename">
+                            <FontAwesomeIcon icon="edit" />
+                          </div>
+                          <ReactTooltip id='edit' effect='solid' className="tooltip-rename">
+                            <span>Renommer</span>
+                          </ReactTooltip>
+                          <div data-tip data-for='remove' className="file-event-remove" onClick={() => { this.handleRemove(file) }}>
+                            <FontAwesomeIcon icon="times" />
+                          </div>
+                          <ReactTooltip id='remove' effect='solid' className="tooltip-remove">
+                            <span>Supprimer</span>
+                          </ReactTooltip>
 
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )
-              })}
-            </div> :
+                  )
+                })}
+              </div>
+              <div className="col-xs-2 col-sm-2 col-md-2 col-lg-1 col-xl-2">
+              </div>
+            </div>
+            :
             <div className="text-center">
               <h2>Vous n'avez pas de fichier</h2>
             </div>

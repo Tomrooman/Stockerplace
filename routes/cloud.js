@@ -36,12 +36,6 @@ router.post('/', upload.any(), (req, res) => {
 });
 
 router.post('/:id', (req, res) => {
-  console.log('user id', req.params.id);
-  console.log('req body', req);
-  res.send(true)
-});
-
-router.get('/:id', (req, res) => {
   fileSchema.findByUserId(req.params.id)
     .then(file => {
       res.send(file);

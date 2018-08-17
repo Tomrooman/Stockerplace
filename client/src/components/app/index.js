@@ -76,7 +76,9 @@ class App extends Component {
         <Navbar
           url={this.state.url} connect_modal={this.connect_modal} disconnect={this.disconnect} subscribe_modal={this.subscribe_modal}
           user={this.state.user} />
-        {this.state.content}
+        {this.state.user && this.state.user['pseudo'] ?
+          this.state.content
+          : null}
       </div>
     );
   }

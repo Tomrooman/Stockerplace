@@ -12,13 +12,13 @@ class ModalComponent extends Component {
     constructor() {
         super();
         this.state = {
-            pseudo : '',
-            password : '',
-            show : false,
-            showFinished : false,
-            status : 'inProgress',
-            connectError : false,
-            errorMessage : ''
+            pseudo: '',
+            password: '',
+            show: false,
+            showFinished: false,
+            status: 'inProgress',
+            connectError: false,
+            errorMessage: ''
         }
         this.handleClose = this.handleClose.bind(this);
         this.subscribe = this.subscribe.bind(this);
@@ -30,24 +30,24 @@ class ModalComponent extends Component {
     connect(e) {
         e.preventDefault();
         if (this.state.pseudo && this.state.password) {
-        var encrypted = CryptoJS.HmacSHA1(this.state.password, "Secret key stockerplace");
-        axios.post('user/connexion', {
-            pseudo : this.state.pseudo,
-            password : encrypted.toString()
-        })
-        .then(response => {
-            if (response.data === false) {
-                this.showError('Identifiants incorrectes');
-            }
-            else {
-                cookies.set('stockerplace_user', {
-                    pseudo : response.data[0].pseudo,
-                    email : response.data[0].email,
-                    id : response.data[0]._id
+            var encrypted = CryptoJS.HmacSHA1(this.state.password, "Secret key stockerplace");
+            axios.post('/user/connexion', {
+                pseudo: this.state.pseudo,
+                password: encrypted.toString()
+            })
+                .then(response => {
+                    if (response.data === false) {
+                        this.showError('Identifiants incorrectes');
+                    }
+                    else {
+                        cookies.set('stockerplace_user', {
+                            pseudo: response.data[0].pseudo,
+                            email: response.data[0].email,
+                            id: response.data[0]._id
+                        })
+                        window.location.replace('http://localhost:3000');
+                    }
                 })
-                window.location.replace('http://localhost:3000');
-            }
-        })
         }
         else {
             this.showError('Veuillez écrire un pseudo et un mot de passe');
@@ -58,28 +58,28 @@ class ModalComponent extends Component {
         e.preventDefault();
         if (this.state.pseudo && this.state.password && this.state.email) {
             var encrypted = CryptoJS.HmacSHA1(this.state.password, "Secret key stockerplace");
-            axios.post('user/subscribe', {
-                pseudo : this.state.pseudo,
-                password : encrypted.toString(),
-                email : this.state.email
+            axios.post('/user/subscribe', {
+                pseudo: this.state.pseudo,
+                password: encrypted.toString(),
+                email: this.state.email
             })
-            .then(response => {
-                if (response.data === false) {
-                    this.showError('Ce pseudo est déjà utilisé');
-                }
-                else {
-                    cookies.set('stockerplace_user', {
-                        pseudo : response.data.pseudo,
-                        email : response.data.email,
-                        id : response.data._id
-                    })
-                    this.setState({
-                        status : 'finished',
-                        showFinished : true,
-                        show : false
-                    })
-                }
-            })
+                .then(response => {
+                    if (response.data === false) {
+                        this.showError('Ce pseudo est déjà utilisé');
+                    }
+                    else {
+                        cookies.set('stockerplace_user', {
+                            pseudo: response.data.pseudo,
+                            email: response.data.email,
+                            id: response.data._id
+                        })
+                        this.setState({
+                            status: 'finished',
+                            showFinished: true,
+                            show: false
+                        })
+                    }
+                })
         }
         else {
             this.showError('Veuillez remplir tous les champs');
@@ -88,21 +88,21 @@ class ModalComponent extends Component {
 
     showError(message) {
         this.setState({
-            connectError : true,
-            errorMessage : message
-            
+            connectError: true,
+            errorMessage: message
+
         })
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ show : nextProps.show })
+        this.setState({ show: nextProps.show })
     }
 
     handleClose() {
         this.setState({
-            show : false,
-            showFinished : false,
-            connectError : false
+            show: false,
+            showFinished: false,
+            connectError: false
         });
     }
 
@@ -110,38 +110,38 @@ class ModalComponent extends Component {
         let name = event.target.name;
         let value = event.target.value;
         this.setState({
-            [name] : value
+            [name]: value
         })
     }
 
     render() {
         if (this.props.title === 'Inscription') {
-            return ( <SubscribeModal
-                        connectError={this.state.connectError}
-                        errorMessage={this.state.errorMessage}
-                        subscribe={this.subscribe}
-                        handleClose={this.handleClose}
-                        handleChange={this.handleChange}
-                        show={this.state.show}
-                        showFinished={this.state.showFinished}
-                        status={this.state.status}
-                        title={this.props.title}
+            return (<SubscribeModal
+                connectError={this.state.connectError}
+                errorMessage={this.state.errorMessage}
+                subscribe={this.subscribe}
+                handleClose={this.handleClose}
+                handleChange={this.handleChange}
+                show={this.state.show}
+                showFinished={this.state.showFinished}
+                status={this.state.status}
+                title={this.props.title}
 
-                        /> )
+            />)
         }
         else {
-            return ( <ConnexionModal
-                        connect={this.connect}
-                        connectError={this.state.connectError}
-                        errorMessage={this.state.errorMessage}
-                        handleClose={this.handleClose}
-                        handleChange={this.handleChange}
-                        show={this.state.show}
-                        status={this.state.status}
-                        title={this.props.title}
-            /> )
+            return (<ConnexionModal
+                connect={this.connect}
+                connectError={this.state.connectError}
+                errorMessage={this.state.errorMessage}
+                handleClose={this.handleClose}
+                handleChange={this.handleChange}
+                show={this.state.show}
+                status={this.state.status}
+                title={this.props.title}
+            />)
         }
-  }
+    }
 }
 
 export default ModalComponent;
