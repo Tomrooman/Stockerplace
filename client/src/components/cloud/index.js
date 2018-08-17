@@ -102,36 +102,41 @@ class Cloud extends Component {
   }
 
   fileSelected(e) {
-    let divClass = e.target.getAttribute('class');
+    let divClass;
     let selectedDiv;
-    divClass = divClass.split(' ');
-    if (divClass[1] !== 'file-line' && divClass[1] !== 'file-line-start' && divClass[1] !== 'file-line-end') {
-      let toSelect = e.target.parentElement.parentElement.getAttribute('class').split(' ');
-      if (toSelect[0] === "files-container") {
-        selectedDiv = e.target.parentElement;
+    if (e.target.getAttribute('class')) {
+      divClass = e.target.getAttribute('class');
+      divClass = divClass.split(' ');
+      if (divClass[1] !== 'file-line' && divClass[1] !== 'file-line-start' && divClass[1] !== 'file-line-end') {
+        let toSelect = e.target.parentElement.parentElement.getAttribute('class').split(' ');
+        if (toSelect[0] === "files-container") {
+          selectedDiv = e.target.parentElement;
+        }
+        else {
+          selectedDiv = e.target.parentElement.parentElement;
+        }
       }
       else {
-        selectedDiv = e.target.parentElement.parentElement;
+        selectedDiv = e.target;
       }
-    }
-    else {
-      selectedDiv = e.target;
-    }
-    divClass = selectedDiv.getAttribute('class').split(' ')[selectedDiv.getAttribute('class').split(' ').length - 1];
-    if (divClass === "file-line-selected" || divClass === "file-line-start-selected" || divClass === "file-line-end-selected" || divClass === "row") {
-      this.unselect(e);
-    }
-    else {
-      if (divClass === "file-line-start") {
-        selectedDiv.setAttribute('class', 'row file-line-start-selected')
-      }
-      else if (divClass === "file-line") {
-        selectedDiv.setAttribute('class', 'row file-line-selected')
+      divClass = selectedDiv.getAttribute('class').split(' ')[selectedDiv.getAttribute('class').split(' ').length - 1];
+      if (divClass === "file-line-selected" || divClass === "file-line-start-selected" || divClass === "file-line-end-selected" || divClass === "row") {
+        this.unselect(e);
       }
       else {
-        selectedDiv.setAttribute('class', 'row file-line-end-selected')
+        if (divClass === "file-line-start") {
+          selectedDiv.setAttribute('class', 'row file-line-start-selected')
+        }
+        else if (divClass === "file-line") {
+          selectedDiv.setAttribute('class', 'row file-line-selected')
+        }
+        else {
+          selectedDiv.setAttribute('class', 'row file-line-end-selected')
+        }
       }
     }
+
+
   }
 
   unselect(e) {
