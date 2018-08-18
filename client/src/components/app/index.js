@@ -73,12 +73,26 @@ class App extends Component {
           show={this.state.show}
           title={this.state.title}
         />
-        <Navbar
-          url={this.state.url} connect_modal={this.connect_modal} disconnect={this.disconnect} subscribe_modal={this.subscribe_modal}
-          user={this.state.user} />
         {this.state.user && this.state.user['pseudo'] ?
-          this.state.content
-          : null}
+          <div>
+            <Navbar
+              url={this.state.url} connect_modal={this.connect_modal} disconnect={this.disconnect} subscribe_modal={this.subscribe_modal}
+              user={this.state.user} />
+            {this.state.content}
+          </div>
+          :
+          <div className="no-auth text-center col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-6">
+            <h1> Stokerplace </h1>
+            <div className="row">
+              <div onClick={this.connect_modal} className="no-auth-choice col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
+                <h3> Se connecter </h3>
+              </div>
+              <div onClick={this.subscribe_modal} className="no-auth-choice col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
+                <h3> S'inscrire </h3>
+              </div>
+            </div>
+          </div>
+        }
       </div>
     );
   }
