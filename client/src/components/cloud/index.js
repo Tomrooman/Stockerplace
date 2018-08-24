@@ -104,7 +104,7 @@ class Cloud extends Component {
   fileSelected(e) {
     let divClass;
     let selectedDiv;
-    if (e.target.getAttribute('class')) {
+    if (e.target.getAttribute('class') && e.target.nodeName !== "svg") {
       divClass = e.target.getAttribute('class');
       divClass = divClass.split(' ');
       if (divClass[1] !== 'file-line' && divClass[1] !== 'file-line-start' && divClass[1] !== 'file-line-end') {
@@ -135,8 +135,6 @@ class Cloud extends Component {
         }
       }
     }
-
-
   }
 
   unselect(e) {
@@ -197,43 +195,39 @@ class Cloud extends Component {
             <h1>Mes fichiers</h1>
           </div>
           {this.state.files && this.state.files.length ?
-            <div className="row">
-              <div className="files-container col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xl-5">
-                {this.state.files.map((file, index) => {
-                  return (
-                    <div onClick={this.fileSelected} className={index === this.state.files.length - 1 ? "row file-line-end" : index === 0 ? "row file-line-start" : "row file-line"} key={file._id}>
-                      <div className="col-9 text-left file-name">
-                        {file.showName}
-                      </div>
-                      <div className="col-3">
-                        <div className="row file-event">
-                          <div data-tip data-for='download' className='file-event-download'>
-                            <a href={"/" + file.path} download={file.showName}><FontAwesomeIcon icon="download" /></a>
-                          </div>
-                          <ReactTooltip id='download' effect='solid' className="tooltip-download">
-                            <span>Télécharger</span>
-                          </ReactTooltip>
-                          <div data-tip data-for='edit' onClick={() => { this.handleRename(file) }} className="file-event-rename">
-                            <FontAwesomeIcon icon="edit" />
-                          </div>
-                          <ReactTooltip id='edit' effect='solid' className="tooltip-rename">
-                            <span>Renommer</span>
-                          </ReactTooltip>
-                          <div data-tip data-for='remove' className="file-event-remove" onClick={() => { this.handleRemove(file) }}>
-                            <FontAwesomeIcon icon="times" />
-                          </div>
-                          <ReactTooltip id='remove' effect='solid' className="tooltip-remove">
-                            <span>Supprimer</span>
-                          </ReactTooltip>
-
+            <div className="files-container col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xl-5">
+              {this.state.files.map((file, index) => {
+                return (
+                  <div onClick={this.fileSelected} className={index === this.state.files.length - 1 ? "row file-line-end" : index === 0 ? "row file-line-start" : "row file-line"} key={file._id}>
+                    <div className="col-9 text-left file-name">
+                      {file.showName}
+                    </div>
+                    <div className="col-3">
+                      <div className="row file-event">
+                        <div data-tip data-for='download' className='file-event-download'>
+                          <a href={"/" + file.path} download={file.showName}><FontAwesomeIcon icon="download" /></a>
                         </div>
+                        <ReactTooltip id='download' effect='solid' className="tooltip-download">
+                          <span>Télécharger</span>
+                        </ReactTooltip>
+                        <div data-tip data-for='edit' onClick={() => { this.handleRename(file) }} className="file-event-rename">
+                          <FontAwesomeIcon icon="edit" />
+                        </div>
+                        <ReactTooltip id='edit' effect='solid' className="tooltip-rename">
+                          <span>Renommer</span>
+                        </ReactTooltip>
+                        <div data-tip data-for='remove' className="file-event-remove" onClick={() => { this.handleRemove(file) }}>
+                          <FontAwesomeIcon icon="times" />
+                        </div>
+                        <ReactTooltip id='remove' effect='solid' className="tooltip-remove">
+                          <span>Supprimer</span>
+                        </ReactTooltip>
+
                       </div>
                     </div>
-                  )
-                })}
-              </div>
-              <div className="col-xs-2 col-sm-2 col-md-2 col-lg-1 col-xl-2">
-              </div>
+                  </div>
+                )
+              })}
             </div>
             :
             <div className="text-center">

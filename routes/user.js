@@ -9,9 +9,9 @@ router.post('/subscribe', function (req, res, next) {
         .then(user => {
             if (user.length === 0) {
                 var user = new userSchema({
-                    pseudo : req.body.pseudo,
-                    password : req.body.password,
-                    email : req.body.email
+                    pseudo: req.body.pseudo,
+                    password: req.body.password,
+                    email: req.body.email
                 });
                 user.save();
                 res.send(user);
@@ -33,6 +33,19 @@ router.post('/connexion', function (req, res, next) {
                 res.send(user);
             }
         })
+});
+
+router.get('/:id', function (req, res, next) {
+    userSchema.findById(req.params.id)
+        .then(user => {
+            if (user.length === 1) {
+                res.send(user);
+            }
+            else {
+                res.send(false);
+            }
+        })
+        .catch(err => console.log('ERR', err))
 });
 
 module.exports = router;

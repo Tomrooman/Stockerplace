@@ -2,19 +2,23 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-    pseudo:  String,
+    pseudo: String,
     password: String,
-    email:   String,
-  });
+    email: String,
+});
 
-  userSchema.statics.findByPseudo = function(pseudo) {
-      return this.model('User').find({ pseudo : pseudo });
-  }
+userSchema.statics.findByPseudo = function (pseudo) {
+    return this.model('User').find({ pseudo: pseudo });
+}
 
-  userSchema.statics.checkConnection = function(pseudo, password) {
+userSchema.statics.findById = function (id) {
+    return this.model('User').find({ _id: id });
+}
+
+userSchema.statics.checkConnection = function (pseudo, password) {
     return this.model('User').find({
-        pseudo : pseudo,
-        password : password
+        pseudo: pseudo,
+        password: password
     });
 }
 

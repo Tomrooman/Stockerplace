@@ -1,0 +1,8 @@
+.container {
+    border : 1px solid black;
+}
+
+.profile-picture {
+    margin-top : 2rem;
+    margin-bottom : 3rem;
+}

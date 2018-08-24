@@ -58,14 +58,18 @@ body {
     border-bottom : 1px solid rgb(192, 192, 192);
 }
 
+.file-line, .file-line-start, .file-line-end {
+    transition : ease-in-out 400ms;
+}
+
 .file-line-start:hover, .file-line:hover, .file-line-end:hover {
-    transition-duration: 0.7s;
-    background-color : rgba(187, 207, 216, 0.158);
     transform : translate(30px);
+    background-color : rgba(187, 207, 216, 0.158);
 }
 
 .file-line-start-selected, .file-line-selected, .file-line-end-selected {
     transform : translate(30px);
+    transition : ease-in-out 400ms;
 }
 
 .file-line-end, .file-line-end-selected {

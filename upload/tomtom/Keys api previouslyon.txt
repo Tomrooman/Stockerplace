@@ -1,0 +1,2 @@
+Clé API Betaseries : 78d146f4fabd
+Clé secrète (pour OAuth 2.0) : 291ecfeb3831ed1dd0e166da6b53df1e

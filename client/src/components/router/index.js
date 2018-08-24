@@ -26,7 +26,7 @@ class Router extends Component {
         else if (page === 'cloud/upload') {
             content = <Upload user={this.props.user} />
         }
-        else if (origine_page === "user") {
+        else if (origine_page === "user" && url.length === 5) {
             content = <Profile user={this.props.user} />
         }
         else {

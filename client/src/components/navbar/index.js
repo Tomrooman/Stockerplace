@@ -1,12 +1,5 @@
 import './navbar.css';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import React, { Component } from 'react';
-
-library.add(faSignInAlt);
-library.add(faSignOutAlt);
-
 
 class NavbarComponent extends Component {
 
