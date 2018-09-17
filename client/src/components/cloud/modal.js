@@ -22,11 +22,9 @@ class RenameModal extends Component {
                         <ModalHeader>{this.props.title}</ModalHeader>
                         <form onSubmit={this.props.rename}>
                             <ModalBody>
-                                <div className="row">
-                                    <div className="form-group col-md-4">
-                                        <label>Nouveau nom</label>
-                                        <input name="pseudo" onChange={this.props.handleChange} type="text" value={name} className="form-control" />
-                                    </div>
+                                <div className="form-group">
+                                    <label>Nouveau nom</label>
+                                    <input name="pseudo" onChange={this.props.handleChange} type="text" value={name} className="form-control col-10" />
                                 </div>
                             </ModalBody>
                             <ModalFooter>

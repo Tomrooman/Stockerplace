@@ -39,40 +39,22 @@ body {
     overflow-wrap: break-word;
 }
 
-.file-line-start, .file-line, .file-line-end, .file-line-start-selected, .file-line-selected, .file-line-end-selected {
+.file-line-start, .file-line, .file-line-end {
     padding-top : 1rem;
     padding-bottom : 1rem;
     position : relative;
 }
 
-.file-line-start, .file-line-start-selected {
+.file-line-start {
     border-top : 1px solid rgb(192, 192, 192);
     border-bottom : 1px solid rgb(192, 192, 192);
 }
 
-.file-line-start-selected, .file-line-selected, .file-line-end-selected {
-    background-color : rgba(187, 207, 216, 0.158);
-}
-
-.file-line, .file-line-selected {
+.file-line{
     border-bottom : 1px solid rgb(192, 192, 192);
 }
 
-.file-line, .file-line-start, .file-line-end {
-    transition : ease-in-out 400ms;
-}
-
-.file-line-start:hover, .file-line:hover, .file-line-end:hover {
-    transform : translate(30px);
-    background-color : rgba(187, 207, 216, 0.158);
-}
-
-.file-line-start-selected, .file-line-selected, .file-line-end-selected {
-    transform : translate(30px);
-    transition : ease-in-out 400ms;
-}
-
-.file-line-end, .file-line-end-selected {
+.file-line-end {
     border-bottom : 1px solid rgb(192, 192, 192);
 }
 

@@ -33,7 +33,6 @@ class Cloud extends Component {
     this.rename = this.rename.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
-    this.fileSelected = this.fileSelected.bind(this);
   }
 
   componentWillMount() {
@@ -101,70 +100,6 @@ class Cloud extends Component {
     });
   }
 
-  fileSelected(e) {
-    let divClass;
-    let selectedDiv;
-    if (e.target.getAttribute('class') && e.target.nodeName !== "svg") {
-      divClass = e.target.getAttribute('class');
-      divClass = divClass.split(' ');
-      if (divClass[1] !== 'file-line' && divClass[1] !== 'file-line-start' && divClass[1] !== 'file-line-end') {
-        let toSelect = e.target.parentElement.parentElement.getAttribute('class').split(' ');
-        if (toSelect[0] === "files-container") {
-          selectedDiv = e.target.parentElement;
-        }
-        else {
-          selectedDiv = e.target.parentElement.parentElement;
-        }
-      }
-      else {
-        selectedDiv = e.target;
-      }
-      divClass = selectedDiv.getAttribute('class').split(' ')[selectedDiv.getAttribute('class').split(' ').length - 1];
-      if (divClass === "file-line-selected" || divClass === "file-line-start-selected" || divClass === "file-line-end-selected" || divClass === "row") {
-        this.unselect(e);
-      }
-      else {
-        if (divClass === "file-line-start") {
-          selectedDiv.setAttribute('class', 'row file-line-start-selected')
-        }
-        else if (divClass === "file-line") {
-          selectedDiv.setAttribute('class', 'row file-line-selected')
-        }
-        else {
-          selectedDiv.setAttribute('class', 'row file-line-end-selected')
-        }
-      }
-    }
-  }
-
-  unselect(e) {
-    let divClass = e.target.getAttribute('class');
-    let selectedDiv;
-    divClass = divClass.split(' ');
-    if (divClass[1] !== 'file-line-selected' && divClass[1] !== 'file-line-start-selected' && divClass[1] !== 'file-line-end-selected') {
-      let toSelect = e.target.parentElement.parentElement.getAttribute('class').split(' ');
-      if (toSelect[0] === "files-container") {
-        selectedDiv = e.target.parentElement;
-      }
-      else {
-        selectedDiv = e.target.parentElement.parentElement;
-      }
-    }
-    else {
-      selectedDiv = e.target;
-    }
-    divClass = selectedDiv.getAttribute('class').split(' ')[selectedDiv.getAttribute('class').split(' ').length - 1];
-    if (divClass === "file-line-start-selected") {
-      selectedDiv.setAttribute('class', 'row file-line-start')
-    }
-    else if (divClass === "file-line-selected") {
-      selectedDiv.setAttribute('class', 'row file-line')
-    }
-    else {
-      selectedDiv.setAttribute('class', 'row file-line-end')
-    }
-  }
-
   remove() {
     axios.post(`/cloud/remove/${this.state.file._id}`)
       .then(response => {
@@ -198,7 +133,7 @@ class Cloud extends Component {
             <div className="files-container col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xl-5">
               {this.state.files.map((file, index) => {
                 return (
-                  <div onClick={this.fileSelected} className={index === this.state.files.length - 1 ? "row file-line-end" : index === 0 ? "row file-line-start" : "row file-line"} key={file._id}>
+                  <div className={index === this.state.files.length - 1 ? "row file-line-end" : index === 0 ? "row file-line-start" : "row file-line"} key={file._id}>
                     <div className="col-9 text-left file-name">
                       {file.showName}
                     </div>
