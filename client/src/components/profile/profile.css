@@ -2,7 +2,12 @@
     border : 1px solid black;
 }
 
-.profile-picture {
-    margin-top : 2rem;
-    margin-bottom : 3rem;
+.profile-picture-container img {
+    height : 170px;
+    width : 170px;
+}
+
+.profile-picture-container {
+    margin-top : 3rem;
+    margin-left : 3rem;
 }

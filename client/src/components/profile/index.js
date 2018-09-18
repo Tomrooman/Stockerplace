@@ -27,20 +27,24 @@ class ProfileComponent extends Component {
     if (this.state.data) {
       return (
         <div className="container">
-          <div className="profile-picture text-center">
-            <img alt="profile_picture" src=""></img>
+        <div className="row col-10">
+          <div className="profile-picture-container text-center">
+            <img alt="profile_picture" className="profile_picture" src={require(`../../images/Anonyme.jpg`)}></img>
           </div>
-          <div className="row">
-            <div className="col-6 text-center pseudo">
-              <p>pseudo</p>
-            </div>
-            <div className="col-6 text-center email">
-              <p>email</p>
-            </div>
+
+        <div className="">
+          <div className="">
+            <p>Lalalalala : lalla</p>
           </div>
-          <div className="password">
-            <p>password</p>
+          <div className="">
+            <p>Lalalalala : lalla</p>
           </div>
+          <div className="">
+            <p>Lalalalala : lalla</p>
+          </div>
+
+          </div>
+        </div>
         </div>
       );
     }

@@ -130,7 +130,7 @@ class Cloud extends Component {
             <h1>Mes fichiers</h1>
           </div>
           {this.state.files && this.state.files.length ?
-            <div className="files-container col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xl-5">
+            <div className="files-container col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xl-7">
               {this.state.files.map((file, index) => {
                 return (
                   <div className={index === this.state.files.length - 1 ? "row file-line-end" : index === 0 ? "row file-line-start" : "row file-line"} key={file._id}>
