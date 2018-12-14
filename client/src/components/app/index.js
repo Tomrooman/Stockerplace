@@ -82,14 +82,16 @@ class App extends Component {
             {this.state.content}
           </div>
           :
-          <div className="no-auth text-center col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-6">
-            <h1> Stokerplace </h1>
-            <div className="row">
-              <div onClick={this.connect_modal} className="no-auth-choice col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
-                <h3> Se connecter </h3>
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div className="no-auth-title text-center col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-6">
+              <h1> Stokerplace </h1>
+            </div>
+            <div className="row no-auth-choice-div">
+              <div onClick={this.connect_modal} className="no-auth-choice">
+                <h3>Se connecter</h3>
               </div>
-              <div onClick={this.subscribe_modal} className="no-auth-choice col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
-                <h3> S'inscrire </h3>
+              <div onClick={this.subscribe_modal} className="no-auth-choice">
+                <h3>S'inscrire</h3>
               </div>
             </div>
           </div>

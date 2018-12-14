@@ -1,28 +1,26 @@
-body {
-    background-color : rgb(241, 241, 241) !important;
-}
-
-.no-auth h1 {
-    padding-top : 1rem;
-    padding-bottom : 1rem;
-    border-bottom : 1px solid black;
-}
-
-.no-auth {
-    margin-top : 4rem;
-    border : 1px solid black;
-    margin-right : auto;
+.no-auth-title {
+    margin-top : 2rem;
     margin-left : auto;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    margin-right : auto;
+}
+
+.no-auth-title h1 {
+    font-size : 5rem;
+}
+
+.no-auth-choice-div {
+    margin-top : 3rem;
+    text-align: center;
+    border:  1px solid rgb(199, 111, 111);
+    height : 100%;
 }
 
 .no-auth-choice {
-    padding-top : 1rem;
-    padding-bottom : 0.5rem;
     border : 1px solid black;
-    margin-bottom : 3rem;
-    margin-top : 2rem;
-    margin-right : auto;
-    margin-left : auto;
+    text-align: center;
+    width : 50%;
+}
+
+.no-auth-choice h3 {
+    font-size: 4rem;
 }
