@@ -87,10 +87,10 @@ class App extends Component {
               <h1> Stokerplace </h1>
             </div>
             <div className="row no-auth-choice-div">
-              <div onClick={this.connect_modal} className="no-auth-choice">
+              <div onClick={this.connect_modal} className="no-auth-choice connexion">
                 <h3>Se connecter</h3>
               </div>
-              <div onClick={this.subscribe_modal} className="no-auth-choice">
+              <div onClick={this.subscribe_modal} className="no-auth-choice inscription">
                 <h3>S'inscrire</h3>
               </div>
             </div>
