@@ -11,3 +11,11 @@ nav button {
     cursor: pointer;
     color : red !important;
 }
+
+.stocker-nav {
+    background-color: rgb(43, 4, 4) !important;
+}
+
+.stocker-nav-title, .stocker-nav-sub {
+    color : white !important;
+}

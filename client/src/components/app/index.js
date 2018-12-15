@@ -82,7 +82,7 @@ class App extends Component {
             {this.state.content}
           </div>
           :
-          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <div className="title-bg col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <div className="no-auth-title text-center col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-6">
               <h1> Stokerplace </h1>
             </div>

@@ -1,11 +1,18 @@
 .no-auth-title {
-    margin-top : 2rem;
+
+    padding-top : 2rem;
+    padding-bottom : 2rem;
     margin-left : auto;
     margin-right : auto;
 }
 
+.title-bg {
+    background: rgb(43, 4, 4);
+}
+
 .no-auth-title h1 {
     font-size : 5rem;
+    color : white;
 }
 
 .no-auth-choice-div {
@@ -16,15 +23,37 @@
 }
 
 .no-auth-choice {
-    border : 1px solid black;
+    border-top : 1px solid #BBBBBB;
     width : 50%;
     height : 100%;
     display : flex;
     justify-content: center;
     align-items: center;
-    padding-bottom : 15vh;
+    padding-bottom : 20vh;
 }
 
 .no-auth-choice h3 {
+    color : rgb(88, 15, 15);
     font-size: 4rem;
+}
+
+.connexion h3, .inscription h3 {
+    /*background: rgb(231, 231, 231);*/
+    transition : font-size 0.7s ease-in-out;
+}
+
+.connexion, .inscription {
+    background : rgb(240, 240, 240);
+}
+
+.connexion:hover, .inscription:hover {
+    background : rgb(240, 240, 240);
+}
+
+.inscription {
+    border-left : 1px solid black;
+}
+
+.connexion:hover h3, .inscription:hover h3 {
+    font-size : 6rem;
 }

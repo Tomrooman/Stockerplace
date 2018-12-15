@@ -66,7 +66,7 @@ class ModalComponent extends Component {
         $('.no-auth-choice-div').animate({
             top: '100%'
         }, 1000);
-        $('.no-auth-title').animate({
+        $('.title-bg').animate({
             opacity: '0'
         }, 500);
     }
