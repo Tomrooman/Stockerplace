@@ -4,6 +4,7 @@ import ConnexionModal from './connexionModal';
 import axios from "axios";
 import CryptoJS from 'crypto-js';
 import Cookies from 'universal-cookie';
+import $ from 'jquery';
 
 const cookies = new Cookies();
 
@@ -40,18 +41,34 @@ class ModalComponent extends Component {
                         this.showError('Identifiants incorrectes');
                     }
                     else {
-                        cookies.set('stockerplace_user', {
-                            pseudo: response.data[0].pseudo,
-                            email: response.data[0].email,
-                            id: response.data[0]._id
+                        this.setState({
+                            show: false,
+                            showFinished: true
                         })
-                        window.location.replace('http://localhost:3000');
+                        this.home_effect();
+                        setTimeout(() => {
+                            cookies.set('stockerplace_user', {
+                                pseudo: response.data[0].pseudo,
+                                email: response.data[0].email,
+                                id: response.data[0]._id
+                            })
+                            window.location.replace('http://localhost:3000');
+                        }, 1020)
                     }
                 })
         }
         else {
             this.showError('Veuillez écrire un pseudo et un mot de passe');
         }
+    }
+
+    home_effect() {
+        $('.no-auth-choice-div').animate({
+            top: '100%'
+        }, 1000);
+        $('.no-auth-title').animate({
+            opacity: '0'
+        }, 500);
     }
 
     subscribe(e) {
@@ -68,16 +85,19 @@ class ModalComponent extends Component {
                         this.showError('Ce pseudo est déjà utilisé');
                     }
                     else {
-                        cookies.set('stockerplace_user', {
-                            pseudo: response.data.pseudo,
-                            email: response.data.email,
-                            id: response.data._id
-                        })
+                        this.home_effect();
                         this.setState({
                             status: 'finished',
                             showFinished: true,
                             show: false
                         })
+                        setTimeout(() => {
+                            cookies.set('stockerplace_user', {
+                                pseudo: response.data.pseudo,
+                                email: response.data.email,
+                                id: response.data._id
+                            })
+                        }, 1020)
                     }
                 })
         }
