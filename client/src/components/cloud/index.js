@@ -243,87 +243,102 @@ class Cloud extends Component {
               </div>
             </div>
           </div>
-          <div className="files-container col-xs-11 col-sm-11 col-md-11 col-lg-9 col-xl-7">
-            {this.state.files && this.state.files.length ? (
-              this.state.files.map((file, index) => {
-                return (
-                  <div
-                    className={
-                      index === this.state.files.length - 1
-                        ? "row file-line-end"
-                        : index === 0
-                        ? "row file-line-start"
-                        : "row file-line"
-                    }
-                    id={file._id}
-                    key={file._id}
-                    onClick={e => this.handleClick(e, file._id)}
-                  >
-                    <div className="col-9 text-left file-name">
-                      {file.showName}
-                    </div>
-                    <div className="col-3">
-                      <div className="row file-event">
-                        <div
-                          data-tip
-                          data-for="download"
-                          className="file-event-download"
-                        >
-                          <a href={"/" + file.path} download={file.showName}>
-                            <FontAwesomeIcon icon="download" />
-                          </a>
+          <div className="row">
+            <div className="files-container col-xs-11 col-sm-11 col-md-11 col-lg-9 col-xl-7">
+              {this.state.files && this.state.files.length ? (
+                this.state.files.map((file, index) => {
+                  return (
+                    <div
+                      className={
+                        index === this.state.files.length - 1
+                          ? "row file-line-end"
+                          : index === 0
+                          ? "row file-line-start"
+                          : "row file-line"
+                      }
+                      id={file._id}
+                      key={file._id}
+                      onClick={e => this.handleClick(e, file._id)}
+                    >
+                      <div className="col-9 text-left file-name">
+                        {file.showName}
+                      </div>
+                      <div className="col-3">
+                        <div className="row file-event">
+                          <div
+                            data-tip
+                            data-for="download"
+                            className="file-event-download"
+                          >
+                            <a href={"/" + file.path} download={file.showName}>
+                              <FontAwesomeIcon icon="download" />
+                            </a>
+                          </div>
+                          <ReactTooltip
+                            id="download"
+                            effect="solid"
+                            className="tooltip-download"
+                          >
+                            <span>Télécharger</span>
+                          </ReactTooltip>
+                          <div
+                            data-tip
+                            data-for="edit"
+                            onClick={() => {
+                              this.handleRename(file);
+                            }}
+                            className="file-event-rename"
+                          >
+                            <FontAwesomeIcon icon="edit" />
+                          </div>
+                          <ReactTooltip
+                            id="edit"
+                            effect="solid"
+                            className="tooltip-rename"
+                          >
+                            <span>Renommer</span>
+                          </ReactTooltip>
+                          <div
+                            data-tip
+                            data-for="remove"
+                            className="file-event-remove"
+                            onClick={() => {
+                              this.handleRemove(file);
+                            }}
+                          >
+                            <FontAwesomeIcon icon="times" />
+                          </div>
+                          <ReactTooltip
+                            id="remove"
+                            effect="solid"
+                            className="tooltip-remove"
+                          >
+                            <span>Supprimer</span>
+                          </ReactTooltip>
                         </div>
-                        <ReactTooltip
-                          id="download"
-                          effect="solid"
-                          className="tooltip-download"
-                        >
-                          <span>Télécharger</span>
-                        </ReactTooltip>
-                        <div
-                          data-tip
-                          data-for="edit"
-                          onClick={() => {
-                            this.handleRename(file);
-                          }}
-                          className="file-event-rename"
-                        >
-                          <FontAwesomeIcon icon="edit" />
-                        </div>
-                        <ReactTooltip
-                          id="edit"
-                          effect="solid"
-                          className="tooltip-rename"
-                        >
-                          <span>Renommer</span>
-                        </ReactTooltip>
-                        <div
-                          data-tip
-                          data-for="remove"
-                          className="file-event-remove"
-                          onClick={() => {
-                            this.handleRemove(file);
-                          }}
-                        >
-                          <FontAwesomeIcon icon="times" />
-                        </div>
-                        <ReactTooltip
-                          id="remove"
-                          effect="solid"
-                          className="tooltip-remove"
-                        >
-                          <span>Supprimer</span>
-                        </ReactTooltip>
                       </div>
                     </div>
-                  </div>
-                );
-              })
-            ) : (
-              <div className="text-center">
-                <h2>Vous n'avez pas de fichier</h2>
+                  );
+                })
+              ) : (
+                <div className="text-center">
+                  <h2>Vous n'avez pas de fichier</h2>
+                </div>
+              )}
+            </div>
+            <div className="right-menu">
+              <div className="row">
+                <div className="submenu-title col-3 text-center">
+                  <p>M</p>
+                  <p>E</p>
+                  <p>N</p>
+                  <p>U</p>
+                </div>
+                <div className="submenu-content">
+                  <h4>Content</h4>
+                </div>
               </div>
-            )}
+            </div>
           </div>
         </div>
       );

@@ -31,6 +31,26 @@ body {
   display: none;
 }
 
+.right-menu {
+  border: 1px solid black;
+  position: absolute;
+  margin-top: 4rem;
+  /*right: -3px;*/
+  right: 200px;
+  width: 200px;
+  padding-top: 1rem;
+}
+
+.submenu-title {
+  margin-top: -1rem;
+  padding-top: 1rem;
+  border-right: 1px solid black;
+}
+
+.submenu-title p {
+  padding-left: 0.5rem;
+}
+
 .stocker-nav a:hover {
   text-decoration: none;
   color: black;
