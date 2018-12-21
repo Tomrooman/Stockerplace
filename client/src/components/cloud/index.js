@@ -31,6 +31,7 @@ class Cloud extends Component {
       title: "",
       choice: ""
     };
+    this.leftSubmenu = 0;
     this.onChange = this.onChange.bind(this);
     this.handleRename = this.handleRename.bind(this);
     this.remove = this.remove.bind(this);
@@ -38,6 +39,7 @@ class Cloud extends Component {
     this.rename = this.rename.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
+    this.selectFile = this.selectFile.bind(this);
   }
 
   componentWillMount() {
@@ -129,7 +131,73 @@ class Cloud extends Component {
   }
 
   showSubmenu() {
-    console.log("show submenu");
+    if ($(".submenu")[0].style.display === "inline-block") {
+      $(".submenu").animate(
+        {
+          left: this.leftSubmenu,
+          opacity: 0
+        },
+        400,
+        () => {
+          $(".submenu")[0].style.display = "none";
+        }
+      );
+      $(".bars-icon").removeClass("animate");
+    } else {
+      if (!this.leftSubmenu) {
+        this.leftSubmenu = $(".sm-submenu-icon").position().left + 200;
+      }
+      $(".submenu")[0].style.position = "absolute";
+      $(".submenu")[0].style.right = "0";
+      $(".submenu")[0].style.display = "inline-block";
+      $(".submenu").animate(
+        {
+          left: $(".sm-submenu-icon").position().left - 200 + "px",
+          opacity: 1
+        },
+        400
+      );
+      $(".bars-icon").addClass("animate");
+    }
+  }
+
+  openFileDialog() {
+    $(".inputUpload").trigger("click");
+  }
+
+  selectFile(e) {
+    let formData = new FormData();
+    for (let i = 0; i < e.target.files.length; i++) {
+      if (e.target.files[i].name.substr(-3) === ".js") {
+        this.setState({
+          show: true,
+          choice: "errorUpload",
+          title: "Fichier js non autorisée"
+        });
+        return;
+      }
+      formData.append("file", e.target.files[i]);
+    }
+
+    axios
+      .post("/cloud", formData, {
+        headers: {
+          username: this.props.user.pseudo,
+          userId: this.props.user.id
+        }
+      })
+      .then(response => {
+        if (response.data === true) {
+          axios.post(`/cloud/${this.props.user.id}`).then(response => {
+            this.setState({
+              files: response.data,
+              show: true,
+              choice: "confirmUpload",
+              title: "Upload effectué"
+            });
+          });
+        }
+      });
   }
 
   render() {
@@ -147,20 +215,37 @@ class Cloud extends Component {
             title={this.state.title}
           />
           <br />
-          <div className="cloud-title text-center">
+          <div className="cloud-title">
             <h1>
               Mes fichiers
               <span
                 className="d-lg-none d-xl-none sm-submenu-icon"
                 onClick={() => this.showSubmenu()}
               >
-                <FontAwesomeIcon icon="bars" />
+                <span>
+                  <FontAwesomeIcon className="bars-icon" icon="bars" />
+                </span>
               </span>
             </h1>
+            <div className="submenu d-lg-none d-xl-none">
+              <div
+                onClick={() => {
+                  this.openFileDialog();
+                }}
+              >
+                <input
+                  className="inputUpload"
+                  type="file"
+                  onChange={this.selectFile}
+                  multiple
+                />
+                Upload
+              </div>
+            </div>
           </div>
-          {this.state.files && this.state.files.length ? (
-            <div className="files-container col-xs-11 col-sm-11 col-md-11 col-lg-9 col-xl-7">
-              {this.state.files.map((file, index) => {
+          <div className="files-container col-xs-11 col-sm-11 col-md-11 col-lg-9 col-xl-7">
+            {this.state.files && this.state.files.length ? (
+              this.state.files.map((file, index) => {
                 return (
                   <div
                     className={
@@ -233,14 +318,13 @@ class Cloud extends Component {
                     </div>
                   </div>
                 );
-              })}
-            </div>
-          ) : (
-            <div className="text-center">
-              <h2>Vous n'avez pas de fichier</h2>
-            </div>
-          )}
-          <br />
+              })
+            ) : (
+              <div className="text-center">
+                <h2>Vous n'avez pas de fichier</h2>
+              </div>
+            )}
+          </div>
         </div>
       );
     } else if (this.props.user && this.props.user.id) {

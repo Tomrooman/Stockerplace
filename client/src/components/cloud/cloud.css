@@ -14,6 +14,8 @@ body {
 .files-container {
   margin-top: 4rem;
   padding-left: 1rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .stocker-nav {
@@ -23,6 +25,10 @@ body {
 
 .stocker-nav a {
   color: black;
+}
+
+.inputUpload {
+  display: none;
 }
 
 .stocker-nav a:hover {
@@ -82,6 +88,36 @@ body {
   text-align: center;
 }
 
+.bars-icon {
+  transition: 0.4s ease-in-out;
+}
+
+.cloud-title {
+  width: 300px;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.animate {
+  transition: 0.4s ease-in-out;
+  transform: rotate(90deg);
+}
+
+.submenu {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  margin-right: 2rem;
+  width: 250px;
+  display: none;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  opacity: 0;
+}
+
 .sm-submenu-icon {
   padding-left: 1rem;
 }
@@ -110,11 +146,4 @@ body {
 
 .tooltip-remove:after {
   border-top-color: rgb(194, 87, 87) !important;
-}
-
-@media screen and (min-width: 1200px) {
-  .files-container {
-    margin-left: auto;
-    margin-right: auto;
-  }
 }
