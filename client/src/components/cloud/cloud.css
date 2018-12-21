@@ -1,100 +1,120 @@
 body {
-    min-width : 400px;
+  min-width: 400px;
 }
 
 .file-event-download a {
-    color : black !important;
+  color: black !important;
 }
 
 .file-event-download a:hover {
-    color : black !important;
-    text-decoration: none;
+  color: black !important;
+  text-decoration: none;
 }
 
 .files-container {
-    margin-top : 4rem;
-    margin-left : auto;
-    margin-right : auto;
+  margin-top: 4rem;
+  padding-left: 1rem;
 }
 
 .stocker-nav {
-    background-color: rgb(219, 219, 219);
-    border-bottom : 1px solid rgb(189, 189, 189);
+  background-color: rgb(219, 219, 219);
+  border-bottom: 1px solid rgb(189, 189, 189);
 }
 
 .stocker-nav a {
-    color : black;
+  color: black;
 }
 
 .stocker-nav a:hover {
-    text-decoration: none;
-    color : black;
+  text-decoration: none;
+  color: black;
 }
 
 .signin_button {
-    padding-right : 5%;
+  padding-right: 5%;
 }
 
 .file-name {
-    overflow-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
-.file-line-start, .file-line, .file-line-end {
-    padding-top : 1rem;
-    padding-bottom : 1rem;
-    position : relative;
+.file-line-start,
+.file-line,
+.file-line-end {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  position: relative;
 }
 
 .file-line-start {
-    border-top : 1px solid rgb(192, 192, 192);
-    border-bottom : 1px solid rgb(192, 192, 192);
+  border-top: 1px solid rgb(192, 192, 192);
+  border-bottom: 1px solid rgb(192, 192, 192);
 }
 
-.file-line{
-    border-bottom : 1px solid rgb(192, 192, 192);
+.file-line {
+  border-bottom: 1px solid rgb(192, 192, 192);
 }
 
 .file-line-end {
-    border-bottom : 1px solid rgb(192, 192, 192);
+  border-bottom: 1px solid rgb(192, 192, 192);
 }
 
-.file-event-rename, .file-event-remove, .file-event-download {
-    cursor : pointer;
-    margin-right : 15px;
+.file-event-rename,
+.file-event-remove,
+.file-event-download {
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.file-line-start:hover,
+.file-line:hover,
+.file-line-end:hover {
+  background-color: #a0a0a036;
 }
 
 .file-event {
-    float : right;
+  float: right;
 }
 
 .dropzone h3 {
-    margin-top : 2rem;
-    color : grey;
-    text-align : center;
+  margin-top: 2rem;
+  color: grey;
+  text-align: center;
+}
+
+.sm-submenu-icon {
+  padding-left: 1rem;
 }
 
 .dropzone div {
-    padding-top : 10%;
-    margin-top : 3rem;
-    margin-bottom : 3rem;
-    height : 80% !important;
-    width : 80% !important;
-    margin-right : auto;
-    margin-left : auto;
+  padding-top: 10%;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  height: 80% !important;
+  width: 80% !important;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .tooltip-rename {
-    background-color : rgb(117, 177, 177) !important;
+  background-color: rgb(117, 177, 177) !important;
 }
 
 .tooltip-rename:after {
-    border-top-color : rgb(117, 177, 177) !important;
+  border-top-color: rgb(117, 177, 177) !important;
 }
 
 .tooltip-remove {
-    background-color : rgb(194, 87, 87) !important;
+  background-color: rgb(194, 87, 87) !important;
 }
 
 .tooltip-remove:after {
-    border-top-color : rgb(194, 87, 87) !important;
+  border-top-color: rgb(194, 87, 87) !important;
+}
+
+@media screen and (min-width: 1200px) {
+  .files-container {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

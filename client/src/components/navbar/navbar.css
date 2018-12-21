@@ -1,21 +1,26 @@
 nav button {
-    margin-right : 5px;
+  margin-right: 5px;
 }
 
 .dropdown-profile {
-    right: 0 !important;
-    left: auto !important;
+  right: 0 !important;
+  left: auto !important;
+}
+
+.dropdown-menu {
+  border-color: #2f050c !important;
 }
 
 .nav-disconnect {
-    cursor: pointer;
-    color : red !important;
+  cursor: pointer;
+  color: red !important;
 }
 
 .stocker-nav {
-    background-color: rgb(43, 4, 4) !important;
+  background-color: rgb(43, 4, 4) !important;
 }
 
-.stocker-nav-title, .stocker-nav-sub {
-    color : white !important;
+.stocker-nav-title,
+.stocker-nav-sub {
+  color: white !important;
 }
